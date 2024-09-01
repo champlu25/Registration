@@ -1,4 +1,4 @@
-function Input({ type, name, value, placeholder, onChange, onBlur }) {
+function Field({ type, name, value, placeholder, onChange, onBlur }) {
   return (
     <>
       <input
@@ -12,4 +12,4 @@ function Input({ type, name, value, placeholder, onChange, onBlur }) {
     </>
   );
 }
-export default Input;
+export default Field;

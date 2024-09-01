@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import styles from "../registration.module.css";
-import Input from "./Input";
+import styles from "./registration.module.css";
+import Field from "../Field/Field";
 
 function Registration() {
   const [email, setEmail] = useState("");
@@ -94,7 +94,7 @@ function Registration() {
       <div className={styles.formContainer}>
         <form onSubmit={onSubmit}>
           {emailError && <div className={styles.errorLabel}>{emailError}</div>}
-          <Input
+          <Field
             type="email"
             name="email"
             value={email}
@@ -105,7 +105,7 @@ function Registration() {
           {passwordError && (
             <div className={styles.errorLabel}>{passwordError}</div>
           )}
-          <Input
+          <Field
             type="password"
             name="password"
             value={password}
@@ -116,7 +116,7 @@ function Registration() {
           {repeatedPasswordError && (
             <div className={styles.errorLabel}>{repeatedPasswordError}</div>
           )}
-          <Input
+          <Field
             type="password"
             name="repeatedPassword"
             value={repeatedPassword}
