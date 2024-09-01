@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "../registration.module.css";
 import Input from "./Input";
 
@@ -10,6 +10,8 @@ function Registration() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [repeatedPasswordError, setRepeatedPasswordError] = useState("");
+
+  const submitButtonRef = useRef(null);
 
   const sendData = (formData) => {
     console.log(formData);
@@ -49,7 +51,6 @@ function Registration() {
   const onPasswordChange = ({ target }) => {
     setPassword(target.value);
 
-    setRepeatedPasswordError(null);
     setPasswordError(null);
   };
 
@@ -66,7 +67,7 @@ function Registration() {
     } else if (target.value.length < 8) {
       error = "Неверный пароль. Должно быть не меньше 8 символов.";
     } else if (target.value.length > 25) {
-      error = "Неверный пароль. Должно быть не большеы 25 символов.";
+      error = "Неверный пароль. Должно быть не больше 25 символов.";
     }
 
     setPasswordError(error);
@@ -83,6 +84,8 @@ function Registration() {
   const onBlurRepeatedPassword = ({ target }) => {
     if (target.value !== password) {
       setRepeatedPasswordError("Пароли не совпадают.");
+    } else {
+      submitButtonRef.current.focus();
     }
   };
 
@@ -125,6 +128,7 @@ function Registration() {
             type="submit"
             className={styles.submitButton}
             disabled={emailError || passwordError || repeatedPasswordError}
+            ref={submitButtonRef}
           >
             Зарегистрироваться
           </button>
